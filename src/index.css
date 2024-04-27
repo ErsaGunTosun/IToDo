@@ -15,3 +15,7 @@ html,
     -ms-user-select: none;
     user-select: none;
 }
+
+.sectionDiv{
+    transition: width 2s !important;
+}
