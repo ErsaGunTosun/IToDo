@@ -9,5 +9,9 @@ html,
     width: 100% !important;
     height: 100% !important;
     overflow-x: hidden !important;
+    font-family: "Nunito", sans-serif !important;
 
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
