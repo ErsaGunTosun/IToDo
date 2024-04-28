@@ -39,7 +39,7 @@ function ToDoBody() {
         <ToDoBar />
       </div>
       <div class="w-full h-full flex-1 mx-auto text-lg bg-red-500 shadow-lg ">
-        <div className='w-full h-full flex flex-row space-x-1 bg-blue-500'>
+        <div className='w-full h-full flex flex-col space-y-1 md:flex-row md:space-x-1 md:space-y-0 bg-blue-500'>
           <div className={`${sectionsStatus[0]} bg-orange-500 cursor-pointer shrink`} onClick={() => { dispatch(setWindow("first")) }}>
             a
           </div>
