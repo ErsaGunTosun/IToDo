@@ -35,7 +35,7 @@ function ToDoBody() {
 
   return (
     <div class="h-full w-full flex flex-col bg-yellow-500 ">
-      <div class="h-28 flex justify-center ">
+      <div class="h-44 md:h-28 flex justify-center">
         <ToDoBar />
       </div>
       <div class="w-full h-full flex-1 mx-auto text-lg bg-red-500 shadow-lg ">
