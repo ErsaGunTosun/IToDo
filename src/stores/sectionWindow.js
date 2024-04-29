@@ -29,7 +29,7 @@ export const sectionWindow = createSlice({
             }
             else if (action.payload === 'third') {
                 if (state.value[2] === 0) {
-                    state.value = [, 1, 1]
+                    state.value = [1, 1, 1]
                 } else if (state.value[2] === 1) {
                     state.value = [0, 0, 2]
                 }
