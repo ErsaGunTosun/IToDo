@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
+
+// Redux
 import { setWindow } from '../../stores/sectionWindow'
 
+// Components
 import ToDoBar from '../ToDoBar/ToDoBar'
+import TodoWinow from '../ToDoWindow/TodoWinow';
 
 function ToDoBody() {
   const dispatch = useDispatch();
@@ -40,21 +44,9 @@ function ToDoBody() {
       </div>
       <div class="w-full h-full flex-1 mx-auto text-lg  shadow-lg ">
         <div className='w-full h-full flex flex-col space-y-1 md:flex-row md:space-x-1 md:space-y-0 '>
-          <div className={`${sectionsStatus[0]} bg-gray-700 rounded-md cursor-pointer`} onClick={() => { dispatch(setWindow("first")) }}>
-            <div className='w-full text-center mt-2'>
-              <p className='text-gray-100 text-xl'>Yesterday</p>
-            </div>
-          </div>
-          <div className={`${sectionsStatus[1]} bg-gray-700 rounded-md cursor-pointer `} onClick={() => { dispatch(setWindow("second")) }}>
-            <div className='w-full text-center mt-2'>
-              <p className='text-gray-100 text-xl'>Today</p>
-            </div>
-          </div>
-          <div className={`${sectionsStatus[2]} bg-gray-700 rounded-md cursor-pointer`} onClick={() => { dispatch(setWindow("third")) }}>
-            <div className='w-full text-center mt-2'>
-              <p className='text-gray-100 text-xl'>Tomorrow</p>
-            </div>
-          </div>
+          <TodoWinow size={sectionsStatus[0]} id="first" title="Yesterday" />
+          <TodoWinow size={sectionsStatus[1]} id="second" title="Today" />
+          <TodoWinow size={sectionsStatus[2]} id="third" title="Tomorrow" />
         </div>
       </div>
     </div>
