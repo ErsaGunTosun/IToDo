@@ -7,7 +7,7 @@ function ToDoBar() {
       {/* Add Task Input */}
       <div className='basis-full flex-1 md:basis-3/5 px-1'>
         <div class="relative">
-          <input type="search" id="default-search" autoComplete='off' class="w-full block text-sm p-3.5 text-gray-100 bg-gray-700 border border-1 border-gray-700 rounded-md  outline-0" placeholder="Task Title" required />
+          <input type="search" id="default-search" autoComplete='off' class="w-full block text-sm p-3.5 text-gray-100 bg-gray-700 border border-1 border-gray-700 rounded-md  outline-none" placeholder="Task Title" required />
           <button type="submit" class="text-gray-100 absolute end-2.5 bottom-2 font-medium rounded-md text-sm px-4 py-2 bg-gray-600 ">Add</button>
         </div>
       </div>
