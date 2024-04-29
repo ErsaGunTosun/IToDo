@@ -10,7 +10,7 @@ import TodoWinow from '../ToDoWindow/TodoWinow';
 
 function ToDoBody() {
   const dispatch = useDispatch();
-  const [sectionsStatus, setsectionsStatus] = useState(["basis-1/9", "basis-7/9", "basis-1/9"])
+  const [sectionsStatus, setsectionsStatus] = useState(["basis-2/9", "basis-5/9", "basis-2/9"])
 
   const sectionWindow = useSelector((state) => state.sectionWindow.value);
 
@@ -18,17 +18,17 @@ function ToDoBody() {
     sectionWindow.map((item, index) => {
       if (item === 0) {
         setsectionsStatus((prev) => {
-          prev[index] = "basis-1/9"
+          prev[index] = "basis-2/9"
           return [...prev]
         })
       } else if (item === 1) {
         setsectionsStatus((prev) => {
-          prev[index] = "basis-4/9"
+          prev[index] = "basis-3/9"
           return [...prev]
         })
       } else {
         setsectionsStatus((prev) => {
-          prev[index] = "basis-7/9"
+          prev[index] = "basis-5/9"
           return [...prev]
         })
       }
