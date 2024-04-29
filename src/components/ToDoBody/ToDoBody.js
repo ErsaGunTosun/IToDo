@@ -38,16 +38,22 @@ function ToDoBody() {
       <div class="h-44 md:h-28 flex justify-center">
         <ToDoBar />
       </div>
-      <div class="w-full h-full flex-1 mx-auto text-lg bg-red-500 shadow-lg ">
-        <div className='w-full h-full flex flex-col space-y-1 md:flex-row md:space-x-1 md:space-y-0 bg-blue-500'>
-          <div className={`${sectionsStatus[0]} bg-orange-500 cursor-pointer shrink`} onClick={() => { dispatch(setWindow("first")) }}>
-            a
+      <div class="w-full h-full flex-1 mx-auto text-lg  shadow-lg ">
+        <div className='w-full h-full flex flex-col space-y-1 md:flex-row md:space-x-1 md:space-y-0 '>
+          <div className={`${sectionsStatus[0]} bg-gray-700 rounded-md cursor-pointer`} onClick={() => { dispatch(setWindow("first")) }}>
+            <div className='w-full text-center mt-2'>
+              <p className='text-gray-100 text-xl'>Yesterday</p>
+            </div>
           </div>
-          <div className={`${sectionsStatus[1]} bg-green-500 shrink `} onClick={() => { dispatch(setWindow("second")) }}>
-            b
+          <div className={`${sectionsStatus[1]} bg-gray-700 rounded-md cursor-pointer `} onClick={() => { dispatch(setWindow("second")) }}>
+            <div className='w-full text-center mt-2'>
+              <p className='text-gray-100 text-xl'>Today</p>
+            </div>
           </div>
-          <div className={`${sectionsStatus[2]} bg-purple-500 cursor-pointer shrink `} onClick={() => { dispatch(setWindow("third")) }}>
-            c
+          <div className={`${sectionsStatus[2]} bg-gray-700 rounded-md cursor-pointer`} onClick={() => { dispatch(setWindow("third")) }}>
+            <div className='w-full text-center mt-2'>
+              <p className='text-gray-100 text-xl'>Tomorrow</p>
+            </div>
           </div>
         </div>
       </div>
