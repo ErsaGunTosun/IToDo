@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import store from './store'
 import { Provider } from 'react-redux'
 
@@ -6,7 +7,15 @@ import { Provider } from 'react-redux'
 import Header from './components/Header/Header'
 import ToDoBody from './components/ToDoBody/ToDoBody'
 
+//Utils
+import { CheckToDos } from './utils/todos'
+
 function App() {
+
+  useEffect(()=>{
+    CheckToDos();
+  },[])
+
   return (
     <Provider store={store}>
       <div className="App w-full h-full bg-gray-900">

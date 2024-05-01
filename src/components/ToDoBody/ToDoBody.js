@@ -7,10 +7,14 @@ import { setWindow } from '../../stores/sectionWindow'
 // Components
 import ToDoBar from '../ToDoBar/ToDoBar'
 import TodoWinow from '../ToDoWindow/TodoWinow';
+import { GetToDos } from '../../utils/todos';
 
 function ToDoBody() {
   const dispatch = useDispatch();
-  const [sectionsStatus, setsectionsStatus] = useState(["basis-2/9", "basis-5/9", "basis-2/9"])
+  const [sectionsStatus, setsectionsStatus] = useState(["basis-3/12", "basis-6/12", "basis-3/12"])
+  const [today, setToday] = useState([]);
+  const [tomorrow, setTomorrow] = useState([]);
+  const [yesterday, setYesterday] = useState([]);
 
   const sectionWindow = useSelector((state) => state.sectionWindow.value);
 
@@ -18,23 +22,31 @@ function ToDoBody() {
     sectionWindow.map((item, index) => {
       if (item === 0) {
         setsectionsStatus((prev) => {
-          prev[index] = "basis-2/9"
+          prev[index] = "basis-3/12"
           return [...prev]
         })
       } else if (item === 1) {
         setsectionsStatus((prev) => {
-          prev[index] = "basis-3/9"
+          prev[index] = "basis-4/12"
           return [...prev]
         })
       } else {
         setsectionsStatus((prev) => {
-          prev[index] = "basis-5/9"
+          prev[index] = "basis-6/12"
           return [...prev]
         })
       }
     })
 
   }, [sectionWindow])
+
+  useEffect(() => {
+    let date = new Date();
+    let today = `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`
+    let ToDos = GetToDos();
+    setToday(ToDos[0][today])
+  }, [])
+
 
 
   return (
@@ -44,9 +56,9 @@ function ToDoBody() {
       </div>
       <div class="w-full h-full flex-1 mx-auto text-lg  shadow-lg ">
         <div className='w-full h-full flex flex-col space-y-1 md:flex-row md:space-x-1 md:space-y-0 '>
-          <TodoWinow size={sectionsStatus[0]} id="first" title="Yesterday" />
-          <TodoWinow size={sectionsStatus[1]} id="second" title="Today" />
-          <TodoWinow size={sectionsStatus[2]} id="third" title="Tomorrow" />
+          <TodoWinow size={sectionsStatus[0]} id="first" title="Yesterday" data={yesterday} />
+          <TodoWinow size={sectionsStatus[1]} id="second" title="Today" data={today} />
+          <TodoWinow size={sectionsStatus[2]} id="third" title="Tomorrow" data={tomorrow} />
         </div>
       </div>
     </div>

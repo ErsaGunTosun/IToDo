@@ -7,7 +7,7 @@ import { setWindow } from '../../stores/sectionWindow'
 //Components
 import TodoItem from '../TodoItem/TodoItem';
 
-function TodoWinow({ size, id, title }) {
+function TodoWinow({ size, id, title, data = [] }) {
     const dispatch = useDispatch()
 
     return (
@@ -15,8 +15,15 @@ function TodoWinow({ size, id, title }) {
             <div className='w-full text-center mt-2' onClick={() => { dispatch(setWindow(id)) }}>
                 <p className='text-gray-100 text-xl'>{title}</p>
             </div>
-            <div className='w-full flex-grow p-2'>
-                <TodoItem size={size} />
+            <div className='w-full flex-grow p-2 space-y-1'>
+                {
+                    data.map((item, index) => {
+                        return (
+                            <TodoItem key={index} size={size} />
+                        )
+                    })
+                }
+
             </div>
         </div>
     )
