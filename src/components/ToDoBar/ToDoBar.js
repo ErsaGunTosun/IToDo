@@ -4,14 +4,18 @@ import uniqid from 'uniqid';
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import { addTodo } from '../../stores/todos';
-
 import { CreateToDo } from '../../utils/todos';
+
+// Components
+import TimeModal from '../TimeModal/TimeModal';
 
 function ToDoBar() {
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState(0);
+  const [time, setTime] = useState("");
+  const [modal, setModal] = useState(false);
 
   let todayDate = new Date();
   let todayText = `${todayDate.getFullYear()}/${todayDate.getMonth()}/${todayDate.getDate()}`
@@ -37,12 +41,14 @@ function ToDoBar() {
       setDescription(e.target.value)
     }
   }
+
   const handleSelect = (e) => {
     setPriority(e.target.value)
   }
 
-
-
+  const setActive = ()=>{
+    setModal(!modal)
+  }
 
   return (
     <div className='w-full md:w-6/7 h-full flex flex-wrap items-center px-1 md:px-0 '>
@@ -74,7 +80,8 @@ function ToDoBar() {
 
       {/* Date Picker */}
       <div className='basis-1/2  md:basis-1/5 px-1'>
-        <button type="button" className="w-full px-5 py-4 me-2 text-sm font-medium text-gray-100 bg-gray-700 rounded-md"> Task Time</button>
+        <button type="button" onClick={()=>{setActive()}}
+        className="w-full px-5 py-4 me-2 text-sm font-medium text-gray-100 bg-gray-700 rounded-md"> Task Time</button>
       </div>
 
       {/* Description Input */}
@@ -84,6 +91,8 @@ function ToDoBar() {
             className="w-full block p-3 text-sm text-gray-100 bg-gray-700 outline-none rounded-md" placeholder="Task Description" required />
         </div>
       </div>
+
+      <TimeModal active={modal} setActive={setActive}/>
 
     </div>
   )
