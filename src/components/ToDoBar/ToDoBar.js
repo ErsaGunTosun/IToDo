@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
 import uniqid from 'uniqid';
 
 // Redux
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addTodo } from '../../stores/todos';
 import { CreateToDo } from '../../utils/todos';
 
@@ -16,11 +16,7 @@ function ToDoBar() {
   const [priority, setPriority] = useState(0);
   const [taskTime, setTaskTime] = useState("");
   const [taskDate, setTaskDate] = useState("");
-  const [date, setDate] = useState([]);
   const [modal, setModal] = useState(false);
-
-  let todayDate = new Date();
-  let todayText = `${todayDate.getFullYear()}/${todayDate.getMonth()}/${todayDate.getDate()}`
 
   const addToDo = () => {
     if (title.length >= 7 && description.length > 0 && priority >= 0) {
@@ -37,10 +33,10 @@ function ToDoBar() {
   }
 
   const handleInput = (e, id) => {
-    if (id == "title") {
+    if (id === "title") {
       setTitle(e.target.value)
     }
-    else if (id == "description") {
+    else if (id === "description") {
       setDescription(e.target.value)
     }
   }

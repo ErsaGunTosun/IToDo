@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 
 // Redux
-import { setWindow } from '../../stores/sectionWindow'
 import { addTodo } from '../../stores/todos'
 
 // Components

@@ -18,7 +18,7 @@ function TimeModal({ active, setActive, setChangeDate }) {
     }
 
     const handleTime = (e, name) => {
-        if (name == "start") {
+        if (name === "start") {
             setStartTime(e.target.value)
         } else {
             setEndTime(e.target.value)
