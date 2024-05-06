@@ -16,6 +16,25 @@ html,
     user-select: none;
 }
 
-.sectionDiv{
+.sectionDiv {
     transition: width 2s !important;
+}
+
+.scroll-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+.scroll-body::-webkit-scrollbar-track {
+    background: #1C1C27;
+}
+
+/* Handle */
+.scroll-body::-webkit-scrollbar-thumb {
+    background: #3B3B54;
+}
+
+/* Handle on hover */
+.scroll-body::-webkit-scrollbar-thumb:hover {
+    background: #7F7F98;
 }
