@@ -15,9 +15,7 @@ const GetToDos = () => {
 }
 
 
-const CreateToDo = (id, title, description, priority) => {
-    let date = new Date();
-    let name = `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`
+const CreateToDo = (name, id, title, description, priority) => {
     let ToDos = GetToDos();
     if (ToDos[0][name]) {
         ToDos[0][name] = [{ id: id, title: title, description: description, priority: priority }, ...ToDos[0][name]]

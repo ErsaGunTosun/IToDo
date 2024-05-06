@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-function TimeModal({ active, setActive }) {
+function TimeModal({ active, setActive, setChangeDate }) {
 
     let todayDate = new Date();
     let todayText = `${todayDate.getFullYear()}/${todayDate.getMonth()}/${todayDate.getDate()}`
@@ -8,9 +8,25 @@ function TimeModal({ active, setActive }) {
     tomorrowDate.setDate(todayDate.getDate() + 1);
     let tomorrowText = `${tomorrowDate.getFullYear()}/${tomorrowDate.getMonth()}/${tomorrowDate.getDate()}`
 
+    const [date, setDate] = useState(todayText);
+    const [startTime, setStartTime] = useState("00:00");
+    const [endTime, setEndTime] = useState("00:00");
 
     const saveTime = () => {
+        setChangeDate(date, [startTime, endTime]);
         setActive();
+    }
+
+    const handleTime = (e, name) => {
+        if (name == "start") {
+            setStartTime(e.target.value)
+        } else {
+            setEndTime(e.target.value)
+        }
+    }
+
+    const handleSelect = (e) => {
+        setDate(e.target.value)
     }
 
 
@@ -31,6 +47,7 @@ function TimeModal({ active, setActive }) {
 
                         <div className='basis-full md:basis-1/5 px-1  mt-5 mb-2'>
                             <select id="date"
+                                onChange={(e) => { handleSelect(e) }}
                                 className="w-full block py-4 px-2 m-0 text-sm text-gray-100 bg-gray-600 outline-none rounded-md">
                                 <option defaultValue value={todayText}>Today</option>
                                 <option value={tomorrowText}>Tomorrow</option>
@@ -38,10 +55,12 @@ function TimeModal({ active, setActive }) {
                         </div>
                         <div class="flex space-x-2  justify-center">
                             <div className='flex'>
-                                <input type="time" id="time" class="rounded-lg text-gray-100 bg-gray-600  leading-none block flex-1 w-full text-sm p-2.5 outline-none" min="09:00" max="18:00" value="00:00" required />
+                                <input type="time" id="time" onChange={(e) => { handleTime(e, "start") }}
+                                    class="rounded-lg text-gray-100 bg-gray-600  leading-none block flex-1 w-full text-sm p-2.5 outline-none" min="09:00" max="18:00" value={startTime} required />
                             </div>
                             <div className='flex'>
-                                <input type="time" id="time" class="rounded-lg text-gray-100 bg-gray-600 leading-none block flex-1 w-full text-sm p-2.5 outline-none" min="09:00" max="18:00" value="00:00" required />
+                                <input type="time" id="time" onChange={(e) => { handleTime(e, "end") }}
+                                    class="rounded-lg text-gray-100 bg-gray-600 leading-none block flex-1 w-full text-sm p-2.5 outline-none" min="09:00" max="18:00" value={endTime} required />
                             </div>
                         </div>
                         <div className='flex mt-2'>

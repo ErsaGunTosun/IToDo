@@ -14,7 +14,9 @@ function ToDoBar() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState(0);
-  const [time, setTime] = useState("");
+  const [taskTime, setTaskTime] = useState("");
+  const [taskDate, setTaskDate] = useState("");
+  const [date, setDate] = useState([]);
   const [modal, setModal] = useState(false);
 
   let todayDate = new Date();
@@ -25,8 +27,9 @@ function ToDoBar() {
       setTitle("");
       setDescription("");
       let id = uniqid();
-      CreateToDo(id,title, description, priority)
-      dispatch(addTodo([todayText, {id: id, title: title, description: description, priority: priority }]))
+      CreateToDo(taskDate,id, title, description, priority)
+      console.log({ id: id, title: title, description: description, priority: priority, time: taskTime }, taskDate)
+      dispatch(addTodo([taskDate, { id: id, title: title, description: description, priority: priority, time: taskTime }]))
     }
     else {
       console.error("EK")
@@ -46,8 +49,14 @@ function ToDoBar() {
     setPriority(e.target.value)
   }
 
-  const setActive = ()=>{
+  const setActive = () => {
     setModal(!modal)
+  }
+
+  const SetDate = (date, time) => {
+    console.log("date",date);
+    setTaskDate(date);
+    setTaskTime(time)
   }
 
   return (
@@ -80,8 +89,8 @@ function ToDoBar() {
 
       {/* Date Picker */}
       <div className='basis-1/2  md:basis-1/5 px-1'>
-        <button type="button" onClick={()=>{setActive()}}
-        className="w-full px-5 py-4 me-2 text-sm font-medium text-gray-100 bg-gray-700 rounded-md"> Task Time</button>
+        <button type="button" onClick={() => { setActive() }}
+          className="w-full px-5 py-4 me-2 text-sm font-medium text-gray-100 bg-gray-700 rounded-md"> Task Time</button>
       </div>
 
       {/* Description Input */}
@@ -92,7 +101,7 @@ function ToDoBar() {
         </div>
       </div>
 
-      <TimeModal active={modal} setActive={setActive}/>
+      <TimeModal active={modal} setActive={setActive} setChangeDate={SetDate} />
 
     </div>
   )

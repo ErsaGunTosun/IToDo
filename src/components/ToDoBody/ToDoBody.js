@@ -64,8 +64,8 @@ function ToDoBody() {
     })
 
     setToday(ToDos[0][todayText])
-    setTomorrow(ToDos[0][yesterdayText])
-    setYesterday(ToDos[0][tomorrowText])
+    setTomorrow(ToDos[0][tomorrowText])
+    setYesterday(ToDos[0][yesterdayText])
 
   }, [])
 
@@ -73,8 +73,8 @@ function ToDoBody() {
     let ToDos = GetToDos();
 
     setToday(ToDos[0][todayText])
-    setTomorrow(ToDos[0][yesterdayText])
-    setYesterday(ToDos[0][tomorrowText])
+    setTomorrow(ToDos[0][tomorrowText])
+    setYesterday(ToDos[0][yesterdayText])
 
   }, [todos])
 
