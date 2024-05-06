@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 // Redux
 import { setWindow } from '../../stores/sectionWindow'
+import { addTodo } from '../../stores/todos'
 
 // Components
 import ToDoBar from '../ToDoBar/ToDoBar'
@@ -17,6 +18,19 @@ function ToDoBody() {
   const [yesterday, setYesterday] = useState([]);
 
   const sectionWindow = useSelector((state) => state.sectionWindow.value);
+  const todos = useSelector((state) => state.todos.value);
+
+
+  let todayDate = new Date();
+  let todayText = `${todayDate.getFullYear()}/${todayDate.getMonth()}/${todayDate.getDate()}`
+
+  let yesterdayDate = new Date(todayDate - (24 * 60 * 60 * 1000));
+  let yesterdayText = `${yesterdayDate.getFullYear()}/${yesterdayDate.getMonth()}/${yesterdayDate.getDate()}`
+
+  let tomorrowDate = new Date(todayDate);
+  tomorrowDate.setDate(todayDate.getDate() + 1);
+  let tomorrowText = `${tomorrowDate.getFullYear()}/${tomorrowDate.getMonth()}/${tomorrowDate.getDate()}`
+
 
   useEffect(() => {
     sectionWindow.map((item, index) => {
@@ -41,24 +55,42 @@ function ToDoBody() {
   }, [sectionWindow])
 
   useEffect(() => {
-    let date = new Date();
-    let today = `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`
     let ToDos = GetToDos();
-    setToday(ToDos[0][today])
+
+    Object.keys(ToDos[0]).map((item) => {
+      ToDos[0][item].map((todo, index) => {
+        dispatch(addTodo([item, todo]))
+      })
+    })
+
+    setToday(ToDos[0][todayText])
+    setTomorrow(ToDos[0][yesterdayText])
+    setYesterday(ToDos[0][tomorrowText])
+
   }, [])
+
+  useEffect(() => {
+    let ToDos = GetToDos();
+
+    setToday(ToDos[0][todayText])
+    setTomorrow(ToDos[0][yesterdayText])
+    setYesterday(ToDos[0][tomorrowText])
+
+  }, [todos])
+
 
 
 
   return (
-    <div class="h-full w-full flex flex-col">
-      <div class="h-44 md:h-28 flex justify-center">
+    <div className="h-full w-full flex flex-col">
+      <div className="h-44 md:h-28 flex justify-center">
         <ToDoBar />
       </div>
-      <div class="w-full h-full flex-1 mx-auto text-lg  shadow-lg ">
+      <div className="w-full h-full flex-1 mx-auto text-lg  shadow-lg ">
         <div className='w-full h-full flex flex-col space-y-1 md:flex-row md:space-x-1 md:space-y-0 '>
-          <TodoWinow size={sectionsStatus[0]} id="first" title="Yesterday" data={yesterday} />
-          <TodoWinow size={sectionsStatus[1]} id="second" title="Today" data={today} />
-          <TodoWinow size={sectionsStatus[2]} id="third" title="Tomorrow" data={tomorrow} />
+          <TodoWinow size={sectionsStatus[0]} id="first" title="Yesterday" dateText={yesterdayText} data={yesterday} />
+          <TodoWinow size={sectionsStatus[1]} id="second" title="Today" dateText={todayText} data={today} />
+          <TodoWinow size={sectionsStatus[2]} id="third" title="Tomorrow" dateText={tomorrowText} data={tomorrow} />
         </div>
       </div>
     </div>

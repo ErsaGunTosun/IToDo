@@ -7,7 +7,7 @@ import { setWindow } from '../../stores/sectionWindow'
 //Components
 import TodoItem from '../TodoItem/TodoItem';
 
-function TodoWinow({ size, id, title, data = [] }) {
+function TodoWinow({ size, dateText, id, title, data = [] }) {
     const dispatch = useDispatch()
 
     return (
@@ -19,7 +19,7 @@ function TodoWinow({ size, id, title, data = [] }) {
                 {
                     data.map((item, index) => {
                         return (
-                            <TodoItem key={index} size={size} />
+                            <TodoItem key={index} dateText={dateText} size={size} id={item.id} title={item.title} description={item.description} priority={item.priority} />
                         )
                     })
                 }
