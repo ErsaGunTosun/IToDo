@@ -11,11 +11,9 @@ export const todos = createSlice({
         addTodo: (state, action) => {
             if (state.value[action.payload[0]]) {
                 state.value[action.payload[0]] = [...state.value[action.payload[0]], action.payload[1]]
-                console.log(action.payload[0])
             }
             else {
                 state.value[action.payload[0]] = [action.payload[1]]
-                console.log(action.payload[0])
 
             }
 
