@@ -4,13 +4,29 @@ import React from 'react'
 import { useDispatch } from "react-redux";
 import { deleteTodo } from '../../stores/todos'
 
-function TodoItem({ size,dateText, id, title, priority, description }) {
+function TodoItem({ size, dateText, id, title, priority, description }) {
     const dispatch = useDispatch()
 
+    const detecetedPriority = (priority) => {
+        console.log(priority)
+        if (priority === '5') {
+            return "High"
+        } else if (priority === '4') {
+            return "Medium"
+        }
+        else if (priority === '2') {
+            return "Low"
+        }
+        else {
+            return "None"  
+        }
+    }
+
+    
 
 
     const deleteItem = () => {
-        dispatch(deleteTodo([dateText,id]))
+        dispatch(deleteTodo([dateText, id]))
     }
     return (
         <div className={`w-full flex ${size === "basis-3/12" ? "flex-col" : "flex-row"} items-center bg-gray-500 p-2 rounded-md`}>
@@ -18,13 +34,13 @@ function TodoItem({ size,dateText, id, title, priority, description }) {
             <div className='flex flex-col grow '>
                 <div className='basis-full flex flex-row items-center'>
                     <input id="checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded " />
-                    <p className='ms-2 text-xl text-gray-100'>{title} <span className='text-red-500 text-sm italic font-bold'>#{priority}</span></p>
+                    <p className='ms-2 text-xl text-gray-100'>{title} <span className='text-red-500 text-sm italic font-bold'>#{detecetedPriority(priority)}</span></p>
                 </div>
 
                 <p className={`basis-full ${size === "basis-3/12" ? "hidden" : "block"}  text-base text-gray-200 ps-6`}>{description}</p>
             </div>
             <div className='flex justify-end items-center space-x-1'>
-                <button type="button" className="text-white bg-gray-600 font-medium rounded-lg text-sm px-3 py-2" onClick={()=>{deleteItem()}}>Delete</button>
+                <button type="button" className="text-white bg-gray-600 font-medium rounded-lg text-sm px-3 py-2" onClick={() => { deleteItem() }}>Delete</button>
                 <button type="button" className="text-white bg-gray-600 font-medium rounded-lg text-sm px-3 py-2">Details</button>
             </div>
         </div>
