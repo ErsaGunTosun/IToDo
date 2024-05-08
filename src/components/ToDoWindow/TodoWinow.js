@@ -19,7 +19,10 @@ function TodoWinow({ size, dateText, id, title, data = [] }) {
                 {
                     data.map((item, index) => {
                         return (
-                            <TodoItem key={index} dateText={dateText} size={size} id={item.id} title={item.title} description={item.description} priority={item.priority} />
+                            <TodoItem 
+                            key={index} dateText={dateText} todoStatus={item.finish}
+                            size={size} id={item.id} title={item.title} 
+                            description={item.description} priority={item.priority} />
                         )
                     })
                 }

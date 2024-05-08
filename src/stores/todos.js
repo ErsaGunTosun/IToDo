@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { deleteTodoLocalStorage } from '../utils/todos'
+import { deleteTodoLocalStorage, setTodoStatusLocalStroge} from '../utils/todos'
 
 export const todos = createSlice({
     name: 'todos',
@@ -25,10 +25,23 @@ export const todos = createSlice({
                     deleteTodoLocalStorage(item, action.payload[1])
                 }
             })
+        },
+        setTodoStatus: (state, action) => {
+            Object.keys(state.value).map((item) => {
+                if (item === action.payload[0]) {
+                    state.value[item].map((todo) => {
+                        if (todo.id === action.payload[1]) {
+                            todo.finish = !todo.finish
+                            setTodoStatusLocalStroge(item, action.payload[1]);
+                        }
+                    })
+                }
+            })
         }
+
     },
 })
 
-export const { addTodo, deleteTodo } = todos.actions
+export const { addTodo, deleteTodo,setTodoStatus } = todos.actions
 
 export default todos.reducer

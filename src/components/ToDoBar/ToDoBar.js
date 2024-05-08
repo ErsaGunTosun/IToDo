@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import uniqid from 'uniqid';
 
 // Redux
@@ -19,13 +19,21 @@ function ToDoBar() {
   const [modal, setModal] = useState(false);
 
   const addToDo = () => {
-    if (title.length >= 7 && description.length > 0 && priority >= 0) {
+    if (title.length >= 3 && description.length > 0 && priority >= 0) {
       setTitle("");
       setDescription("");
       let id = uniqid();
-      CreateToDo(taskDate,id, title, description, priority)
+      CreateToDo(taskDate, id, title, description, priority)
       console.log({ id: id, title: title, description: description, priority: priority, time: taskTime }, taskDate)
-      dispatch(addTodo([taskDate, { id: id, title: title, description: description, priority: priority, time: taskTime }]))
+      dispatch(addTodo([taskDate,
+        {
+          id: id,
+          title: title,
+          description: description,
+          priority: priority,
+          time: taskTime,
+          finish: false
+        }]))
     }
     else {
       console.error("EK")
@@ -50,7 +58,7 @@ function ToDoBar() {
   }
 
   const SetDate = (date, time) => {
-    console.log("date",date);
+    console.log("date", date);
     setTaskDate(date);
     setTaskTime(time)
   }
