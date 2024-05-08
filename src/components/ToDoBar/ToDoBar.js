@@ -24,7 +24,6 @@ function ToDoBar() {
       setDescription("");
       let id = uniqid();
       CreateToDo(taskDate, id, title, description, priority)
-      console.log({ id: id, title: title, description: description, priority: priority, time: taskTime }, taskDate)
       dispatch(addTodo([taskDate,
         {
           id: id,
@@ -58,7 +57,6 @@ function ToDoBar() {
   }
 
   const SetDate = (date, time) => {
-    console.log("date", date);
     setTaskDate(date);
     setTaskTime(time)
   }
