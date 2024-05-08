@@ -6,7 +6,7 @@ import { addTodo } from '../../stores/todos'
 
 // Components
 import ToDoBar from '../ToDoBar/ToDoBar'
-import TodoWinow from '../ToDoWindow/TodoWinow';
+import TodoWindow from '../ToDoWindow/TodoWindow';
 import { GetToDos } from '../../utils/todos';
 
 function ToDoBody() {
@@ -87,9 +87,9 @@ function ToDoBody() {
       </div>
       <div className="w-full h-full flex-1 mx-auto text-lg  shadow-lg ">
         <div className='w-full h-full flex flex-col space-y-1 md:flex-row md:space-x-1 md:space-y-0 '>
-          <TodoWinow size={sectionsStatus[0]} id="first" title="Yesterday" dateText={yesterdayText} data={yesterday} />
-          <TodoWinow size={sectionsStatus[1]} id="second" title="Today" dateText={todayText} data={today} />
-          <TodoWinow size={sectionsStatus[2]} id="third" title="Tomorrow" dateText={tomorrowText} data={tomorrow} />
+          <TodoWindow size={sectionsStatus[0]} id="first" title="Yesterday" dateText={yesterdayText} data={yesterday} />
+          <TodoWindow size={sectionsStatus[1]} id="second" title="Today" dateText={todayText} data={today} />
+          <TodoWindow size={sectionsStatus[2]} id="third" title="Tomorrow" dateText={tomorrowText} data={tomorrow} />
         </div>
       </div>
     </div>

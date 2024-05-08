@@ -7,7 +7,7 @@ import { setWindow } from '../../stores/sectionWindow'
 //Components
 import TodoItem from '../TodoItem/TodoItem';
 
-function TodoWinow({ size, dateText, id, title, data = [] }) {
+function TodoWindow({ size, dateText, id, title, data = [] }) {
     const dispatch = useDispatch()
 
     return (
@@ -32,4 +32,4 @@ function TodoWinow({ size, dateText, id, title, data = [] }) {
     )
 }
 
-export default TodoWinow
+export default TodoWindow
