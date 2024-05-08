@@ -34,10 +34,6 @@ function TodoWindow({ size, dateText, id, title, data = [] }) {
 
     const { height, width } = useWindowDimensions();
 
-    useEffect(() => {
-        console.log(width);
-    }, [width])
-
     return (
         <div className={`${size} bg-gray-700 rounded-md cursor-pointer flex flex-col flex-wrap`} >
             <div className='w-full text-center mt-2' onClick={() => { dispatch(setWindow(id)) }}>
