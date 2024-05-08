@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 
 // Redux
 import { useDispatch } from "react-redux";
@@ -30,13 +30,13 @@ function TodoItem({ size, dateText, id, title, priority, description }) {
     }
 
     return (
-        <div className={`w-full flex ${size === "basis-3/12" ? "flex-col" : "flex-row"} items-center bg-gray-500 p-2 rounded-md`}>
+        <div className={`w-full flex ${size === "basis-3/12" ? "flex-col" : "flex-row"} items-center  ${finish ?  "bg-gray-600 shadow-sm shadow-gray-500/20": "bg-gray-500/50 "} border border-1 border-gray-500/50  p-2 rounded-md`}>
 
             <div className='flex flex-col grow '>
                 <div className='basis-full flex flex-row items-center'>
                     <label className="relative flex items-center rounded-full cursor-pointer" htmlFor="check">
                         <input type="checkbox"
-                        onChange={(e)=>{handleSelect(e)}} value={finish}
+                            onChange={(e) => { handleSelect(e) }} value={finish}
                             className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-600 checked:bg-gray-600 checked:before:bg-gray-600 hover:before:opacity-10"
                             id="check" />
                         <span
@@ -50,7 +50,11 @@ function TodoItem({ size, dateText, id, title, priority, description }) {
                         </span>
                     </label>
                     {/* <input id="orange-checkbox" type="checkbox" value="" className="w-4 h-4 text-red-600 focus:ring-red-600 focus:ring-2 bg-gray-100 rounded outline-none " /> */}
-                    <p className='ms-2 text-xl text-gray-100'>{title} <span className='text-red-500 text-sm italic font-bold'>#{detecetedPriority(priority)}</span></p>
+                    <p className='ms-2 text-xl text-gray-100'>
+                        <span className={`${finish ?"line-through": ""} me-2`}>
+                            {title}
+                        </span>
+                        <span className='text-red-500 no-underline text-sm italic font-bold'>#{detecetedPriority(priority)}</span></p>
                 </div>
 
                 <p className={`basis-full ${size === "basis-3/12" ? "hidden" : "block"}  text-base text-gray-200 ps-6`}>{description}</p>
