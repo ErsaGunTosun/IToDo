@@ -35,17 +35,17 @@ function ToDoBody() {
     sectionWindow.map((item, index) => {
       if (item === 0) {
         setsectionsStatus((prev) => {
-          prev[index] = "basis-3/12"
+          prev[index] = "basis-2/12"
           return [...prev]
         })
       } else if (item === 1) {
         setsectionsStatus((prev) => {
-          prev[index] = "basis-4/12"
+          prev[index] = "basis-5/12"
           return [...prev]
         })
       } else {
         setsectionsStatus((prev) => {
-          prev[index] = "basis-6/12"
+          prev[index] = "basis-8/12"
           return [...prev]
         })
       }
