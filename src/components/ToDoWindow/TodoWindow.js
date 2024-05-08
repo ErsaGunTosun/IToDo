@@ -39,7 +39,7 @@ function TodoWindow({ size, dateText, id, title, data = [] }) {
             <div className='w-full text-center mt-2' onClick={() => { dispatch(setWindow(id)) }}>
                 <p className='text-gray-100 text-xl'>{title}</p>
             </div>
-            <div className='scroll-body w-full flex-grow p-2 space-y-1 md:h-36 overflow-y-scroll'>
+            <div className={`scroll-body w-full flex-grow p-2 space-y-1 ${size == 'basis-8/12' ? "h-40": ""}  md:h-36 overflow-y-scroll`}>
                 {
                     data.map((item, index) => {
                         if (width < 768) {
